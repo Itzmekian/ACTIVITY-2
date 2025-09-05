@@ -1,0 +1,18 @@
+N = int(input("Enter number of students: "))
+
+grades = []
+for i in range(N):
+    grade = int(input(f"Student {i+1}: "))
+    grades.append(grade)
+
+highest = max(grades)
+lowest = min(grades)
+average = sum(grades) / N
+
+print("\nHighest Grade:", highest)
+print("Lowest Grade:", lowest)
+print("Average Grade:", round(average, 2))
+
+grades.sort(reverse=True)
+
+print("\nGrades in Descending Order:", grades)
