@@ -1,0 +1,40 @@
+SIZE = 9
+
+def check_rows(grid):
+    for row in grid:
+        if sorted(row) != list(range(1, SIZE + 1)):
+            return False
+    return True
+
+def check_cols(grid):
+    for col in range(SIZE):
+        column = [grid[row][col] for row in range(SIZE)]
+        if sorted(column) != list(range(1, SIZE + 1)):
+            return False
+    return True
+
+def check_subgrids(grid):
+    for row in range(0, SIZE, 3):
+        for col in range(0, SIZE, 3):
+            block = []
+            for i in range(3):
+                for j in range(3):
+                    block.append(grid[row + i][col + j])
+            if sorted(block) != list(range(1, SIZE + 1)):
+                return False
+    return True
+
+def main():
+    grid = []
+    print("Enter a 9x9 Sudoku solution (row by row, separated by spaces):")
+    for _ in range(SIZE):
+        row = list(map(int, input().split()))
+        grid.append(row)
+
+    if check_rows(grid) and check_cols(grid) and check_subgrids(grid):
+        print("Valid Solution")
+    else:
+        print("Invalid Solution")
+
+if __name__ == "__main__":
+    main()
