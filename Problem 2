@@ -1,0 +1,40 @@
+n = int(input("Enter the size of the square matrices (n x n): "))
+
+print("\nEnter elements of Matrix A:")
+A = []
+for i in range(n):
+    row = []
+    for j in range(n):
+        val = int(input(f"A[{i}][{j}] = "))
+        row.append(val)
+    A.append(row)
+
+print("\nEnter elements of Matrix B:")
+B = []
+for i in range(n):
+    row = []
+    for j in range(n):
+        val = int(input(f"B[{i}][{j}] = "))
+        row.append(val)
+    B.append(row)
+
+Sum = [[A[i][j] + B[i][j] for j in range(n)] for i in range(n)]
+Diff = [[A[i][j] - B[i][j] for j in range(n)] for i in range(n)]
+
+Prod = [[0 for j in range(n)] for i in range(n)]
+for i in range(n):
+    for j in range(n):
+        for k in range(n):
+            Prod[i][j] += A[i][k] * B[k][j]
+
+print("\nMatrix Sum:")
+for row in Sum:
+    print(row)
+
+print("\nMatrix Difference (A - B):")
+for row in Diff:
+    print(row)
+
+print("\nMatrix Product:")
+for row in Prod:
+    print(row)
