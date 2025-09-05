@@ -1,0 +1,37 @@
+branches = 3
+products = 4
+months = 12
+
+sales = [[[0 for m in range(months)] for p in range(products)] for b in range(branches)]
+
+print("Enter sales data for each branch, product, and month:")
+for b in range(branches):
+    for p in range(products):
+        for m in range(months):
+            sales[b][p][m] = int(input(f" Branch {b+1}, Product {p+1}, Month {m+1}: "))
+
+print("\n--- Results ---\n")
+
+print("Total Sales per Branch:")
+branch_totals = []
+for b in range(branches):
+    total = sum(sum(sales[b][p]) for p in range(products))
+    branch_totals.append(total)
+    print(f" Branch {b+1}: {total}")
+
+print()
+
+print("Total Sales per Product (All Branches):")
+product_totals = []
+for p in range(products):
+    total = sum(sales[b][p][m] for b in range(branches) for m in range(months))
+    product_totals.append(total)
+    print(f" Product {p+1}: {total}")
+
+print()
+
+highest_branch = branch_totals.index(max(branch_totals)) + 1
+print(f"Branch with Highest Annual Sales: Branch {highest_branch}")
+
+lowest_product = product_totals.index(min(product_totals)) + 1
+print(f"Product with Lowest Total Sales: Product {lowest_product}")
